@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+<head>
+    <title>1-1 컴퓨팅 시스템의 구성</title>
+    <link rel="stylesheet" type="text/css" href="../Styles/style1.css"/>
+    <script>
+        function toggleAudio() {
+            const audioButton = document.getElementById('audioButton');
+            const audio = document.getElementById('pageAudio');
+            
+            if (audio.paused) {
+                audio.play();
+                audioButton.textContent = '오디오 중지하기';
+                audioButton.classList.add('stop');
+                audioButton.setAttribute('aria-label', '오디오 중지하기');
+            } else {
+                audio.pause();
+                audio.currentTime = 0;
+                audioButton.textContent = '시각장애인을 위한 오디오 듣기';
+                audioButton.classList.remove('stop');
+                audioButton.setAttribute('aria-label', '시각장애인을 위한 오디오 듣기');
+            }
+        }
+
+        // 페이지 로드 시 오디오 요소 초기화
+        window.onload = function() {
+            const audio = document.getElementById('pageAudio');
+            audio.addEventListener('ended', function() {
+                const audioButton = document.getElementById('audioButton');
+                audioButton.textContent = '시각장애인을 위한 오디오 듣기';
+                audioButton.classList.remove('stop');
+                audioButton.setAttribute('aria-label', '시각장애인을 위한 오디오 듣기');
+            });
+        };
+    </script>
+</head>
+<body epub:type="bodymatter chapter">
+    <!-- 오디오 컨트롤 -->
+    <div class="audio-control">
+        <button id="audioButton" 
+                class="audio-button" 
+                onclick="toggleAudio()" 
+                aria-label="시각장애인을 위한 오디오 듣기">
+            시각장애인을 위한 오디오 듣기
+        </button>
+        <audio id="pageAudio" class="sr-only">
+            <source src="../Video/p1.mp3" type="audio/mpeg" />
+            브라우저가 오디오 재생을 지원하지 않습니다.
+        </audio>
+    </div>
+
+    <div epub:type="pagebreak" id="page1" class="page">
+        <h1>1-1 컴퓨팅 시스템의 구성</h1>
+        
+        <div class="learning-objectives">
+            <h2>학습 목표</h2>
+            <ul>
+                <li>컴퓨터 시스템의 구성요소 설명할 수 있다.</li>
+                <li>컴퓨터 시스템을 구성하고 있는 하드웨어와 소프트웨어에 대해 설명할 수 있다.</li>
+            </ul>
+        </div>
+
+        <div class="activity">
+            <h2>생각 열기</h2>
+            <p>아래의 그림을 보고 문제상황을 생각해보자! </p>
+            <div class="image-container">
+                <img src="../Images/page1.jpg" alt="컴퓨터로 학습하는 모습"/>
+            </div>
+            <p class="question">브랜든은 무엇을 해야하는 걸까?</p>
+        </div>
+
+        <div class="content-section">
+            <h2>1. 컴퓨팅 시스템의 정의</h2>
+            <h3>우리 주위에 어떤 컴퓨팅 시스템이 있을까?</h3>
+            
+            <p>컴퓨팅 시스템은 하드웨어와 소프트웨어의 조합으로, 데이터를 구성하고 처리하는 시스템을 의미합니다.</p>
+            
+            <div class="example">
+                <video id="hardwareVideo" src="../Video/hardware.mp4" controls="controls" onclick="this.play()" style="width: 100%; cursor: pointer;" alt="일상생활 속의 컴퓨팅 시스템">
+                    브라우저가 비디오 재생을 지원하지 않습니다.
+                </video>
+                <p class="caption">하드웨어와 소프트웨어는 무엇일까?</p>
+            </div>
+
+            <div class="computing-definition">
+                <p>컴퓨팅 시스템은 크게 <span class="highlight">하드웨어(Hardware)</span>와 <span class="highlight">소프트웨어(Software)</span>로 구성됩니다.</p>
+                
+                <ul>
+                    <li><span class="highlight">하드웨어</span>: 물리적인 장치들을 의미하며, 자료를 입력하는 입력 장치, 입력받은 자료를 처리하는 중앙 처리 장치, 자료를 저장하는 기억 장치, 처리된 결과를 보여주는 출력 장치로 구성됩니다.</li>
+                    <li><span class="highlight">소프트웨어</span>: 특정 기능을 수행하는 응용 소프트웨어와 하드웨어를 제어하고 사용자에게 편의를 제공하는 시스템 소프트웨어로 나뉩니다. 시스템 소프트웨어에는 하드웨어 구성 요소가 운영 체제의 명령에 따라 제대로 작동하는 데 필요한 드라이버나 펌웨어 등이 포함됩니다.</li>
+                </ul>
+
+                <p>컴퓨팅 시스템은 이러한 하드웨어와 소프트웨어가 유기적으로 연계되어 자료와 신호를 주고받으며 동작합니다. 기본적인 동작 과정은 크게 입력 → 처리 → 출력 순으로 이루어집니다.</p>
+
+                <div class="example-box">
+                    <p>예를 들어, 스마트폰(컴퓨팅 기기)에서 메신저 프로그램을 실행하여 대화하는 과정은 다음과 같이 작동합니다: 운영 체제가 보조 기억 장치에서 주기억 장치로 옮겨져 실행될 수 있는 상태가 되면, 사용자가 응용 소프트웨어를 실행하고 문자를 입력하면, 입력된 문자는 주기억 장치로 옮겨지고 중앙 처리 장치가 이를 처리합니다. 처리된 결과는 다시 주기억 장치로 옮겨지고, 주기억 장치에 저장되거나 출력됩니다.</p>
+                </div>
+
+                <p>우리는 컴퓨팅 시스템을 통해 다양한 정보를 관리하고, 알고리즘에 따라 자동으로 계산하며 문제를 해결하여 원하는 결과를 얻을 수 있습니다. 또한, 인터넷과 연결되어 사람과 사물, 사물과 사물 간의 정보를 주고받으며, 시스템 밖의 주변 환경 변화에 반응하면서 우리의 생활을 더욱 편리하고 윤택하게 만들어 줍니다. 컴퓨팅 시스템은 소프트웨어로 제어되는 기계 및 전자 장치를 포함할 수 있습니다.</p>
+            </div>
+        </div>
+
+        <nav epub:type="page-list" class="page-navigation">
+            <a href="page2.xhtml" epub:type="next" class="next-page">다음 페이지</a>
+        </nav>
+    </div>
+</body>
+</html> 
