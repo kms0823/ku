@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+<head>
+    <title>깃허브 원격저장소 문제상황 해결과정</title>
+    <link rel="stylesheet" type="text/css" href="../Styles/style1.css"/>
+</head>
+<body epub:type="bodymatter chapter">
+    <div class="page" id="page6">
+        <h1>깃허브 원격저장소 문제상황 해결과정</h1>
+        <div class="activity">
+            <h2>실습 목표</h2>
+            <ul>
+                <li>원격저장소 주소 확인 및 설정</li>
+                <li>push/pull 에러 상황 이해 및 해결</li>
+                <li>실제 명령어와 대화 예시로 문제 해결 과정 정리</li>
+            </ul>
+        </div>
+        <div class="content-section">
+            <h2>실제 업로드 순서 안내</h2>
+            <ol>
+                <li><b>원격 저장소(origin) 주소 확인 및 설정</b><br/>
+                    이미 origin이 등록되어 있다면, 아래 명령어로 주소를 확인하세요:<br/>
+                    <code>git remote -v</code><br/>
+                    만약 주소가 다르다면, 아래 명령어로 변경하세요:<br/>
+                    <code>git remote set-url origin https://github.com/kms0823/ku.git</code>
+                </li>
+                <li><b>파일을 스테이징(추가)하기</b><br/>
+                    <code>git add OEBPS/Text/page1.xhtml</code>
+                </li>
+                <li><b>커밋 메시지 작성</b><br/>
+                    <code>git commit -m "Add page1.xhtml"</code>
+                </li>
+                <li><b>깃허브로 푸시</b><br/>
+                    <code>git push origin main</code>
+                </li>
+                <li><b>결과 확인</b><br/>
+                    브라우저에서 <a href="https://github.com/kms0823/ku" target="_blank">https://github.com/kms0823/ku</a>로 접속해 파일이 올라갔는지 확인하세요.<br/>
+                    <b>만약 에러가 난다면</b><br/>
+                    인증이 안 되어 있다면 <code>gh auth login</code>을 먼저 해주세요.<br/>
+                    브랜치 이름이 main이 아닐 경우, 현재 브랜치명을 확인하고(<code>git branch</code>), 그 브랜치명으로 push 하세요.<br/>
+                    추가로 궁금한 점이 있으면 언제든 말씀해 주세요!
+                </li>
+            </ol>
+            <h2>1. 원격저장소 주소 확인 및 설정</h2>
+            <pre><code>$ git remote -v
+origin  https://github.com/kms0823/ku.git (fetch)
+origin  https://github.com/kms0823/ku.git (push)
+</code></pre>
+            <p>만약 주소가 다르면 아래 명령어로 변경</p>
+            <pre><code>$ git remote set-url origin https://github.com/kms0823/ku.git
+</code></pre>
+            <h2>2. 파일 추가, 커밋, 푸시</h2>
+            <pre><code>$ git add OEBPS/Text/page1.xhtml
+$ git commit -m "Add page1.xhtml"
+$ git push origin main
+</code></pre>
+            <h2>3. push 에러 상황</h2>
+            <pre><code>error: failed to push some refs to 'https://github.com/kms0823/ku.git'
+hint: Updates were rejected because the remote contains work that you do not have locally.
+</code></pre>
+            <p>원격 저장소에 내가 갖고 있지 않은 변경사항이 있을 때 발생</p>
+            <h2>4. pull 시도 및 또 다른 에러</h2>
+            <pre><code>$ git pull origin main
+fatal: refusing to merge unrelated histories
+</code></pre>
+            <p>로컬과 원격 저장소의 이력이 완전히 달라서 발생</p>
+            <h2>5. 해결 방법: 강제 병합</h2>
+            <pre><code>$ git pull origin main --allow-unrelated-histories
+</code></pre>
+            <p>충돌이 발생하면 파일을 수정하고 커밋한 뒤 push</p>
+            <h2>6. 최종 push</h2>
+            <pre><code>$ git push origin main
+</code></pre>
+            <h2>7. 대화 예시</h2>
+            <div class="example-box">
+                <p><b>Q:</b> push가 안 돼요!<br/>
+                <b>A:</b> 원격 저장소에 변경사항이 있으니 pull 먼저 해보세요.<br/>
+                <b>Q:</b> pull 했더니 'refusing to merge unrelated histories' 에러가 나요.<br/>
+                <b>A:</b> --allow-unrelated-histories 옵션을 붙여서 pull 하세요.<br/>
+                <b>Q:</b> 충돌이 생겼어요.<br/>
+                <b>A:</b> 충돌 파일을 수정하고 add/commit 후 다시 push 하세요.<br/>
+                <b>Q:</b> 이제 push가 잘 됩니다!</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
